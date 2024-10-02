@@ -1,0 +1,48 @@
+<html>
+<head><title>Hobbies</title>
+</head>
+<body>
+<form method="POST">
+Hobbies<br>
+<input type="checkbox" id="c1" value="Drawing">Dancing<br>
+<input type="checkbox" id="c2" value="Painting">Painting<br>
+<input type="checkbox" id="c3" value="Reading">Reading<br>
+<input type="checkbox" id="c4" value="Dancing">Dancing<br>
+</form>
+</body>
+</html>
+
+------------------------------------------------------------------------------------------
+
+package countcheckpack;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class CounCheck
+{
+public static void main(String[] args)
+{
+System.setProperty("webdriver.firefox.marionette",
+"D:\\TYCS_RANJEET_TecH_RC\\Selenium\\geckodriver.exe");
+WebDriver driver=new FirefoxDriver();
+driver.get("http://localhost:80//hobbies.html");
+driver.findElement(By.xpath("//input[@value='Dancing']")).click();
+driver.findElement(By.xpath("//input[@value='Reading']")).click();
+java.util.List<WebElement>elements=driver.findElements(By.xpath("//input[@t
+ype='checkbox']"));
+int checkedcount=0;
+int uncheckedcount=0;
+for (int i=0;i<elements.size();i++)
+{
+if(elements.get(i).isSelected()==true)
+checkedcount++;
+else
+uncheckedcount++;
+}
+System.out.println("Number of checked checkboxes are :
+"+checkedcount);
+System.out.println("Number of unchecked checkboxes are :
+"+uncheckedcount);
+}
+}

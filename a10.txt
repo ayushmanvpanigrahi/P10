@@ -1,0 +1,102 @@
+(check LAB03)
+
+(VMNET1)
+10.0.0.2
+255.0.0.0
+10.0.0.254
+
+10.0.0.100
+2.2.2.2
+
+
+
+(VMNET8)
+10.0.0.30
+255.0.0.0
+10.0.0.254
+
+10.0.0.100
+2.2.2.2
+
+
+(DIABLE AND ENABLE BOTH VMNET1 AND VMNET8)
+
+server:-
+
+ifconfig
+
+rpm -q samba
+
+mkdir /dept
+mkdir /dept/{hr,sales,admin}
+touch /dept/hr/{file1,file2}
+touch /dept/sales/{file3,file4}
+touch /dept/admin/file5
+
+cd /etc/samba
+ls
+mv smb.conf smb.conf.sample
+
+
+vi smb.conf
+
+[global]
+netbios name = tycs-server
+workgroup = LAB03 
+
+[HR]
+path = /dept/hr
+writable = yes
+public = yes
+
+[SALES]
+path = /dept/sales
+writable = yes
+public = yes
+
+[ADMIN]
+path = /dept/admin
+writable = no
+public = yes
+
+testparm
+
+
+useradd a1
+useradd a2
+
+smbpasswd -a a1
+smbpasswd -a a2
+
+systemctl restart smb
+systemctl status smb
+systemctl stop firewalld
+
+setenforce 0
+
+chmod -R 777 /dept
+
+client:-
+(go to window and click window+R and type: \\10.0.0.100)
+(enter username:a1 and passward:redhat)
+(make a folder in hr)
+(make a folder in sales)
+(try to make a folder in admin)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

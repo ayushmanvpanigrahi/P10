@@ -1,0 +1,46 @@
+Practical 10
+
+Project_name : SampleCalcSvc
+file_name : ICalcService (add item Interface)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SampleCalcSvc
+{
+    [ServiceContract]
+    internal interface ICalcService
+    {
+        [OperationContract]
+        int GetSum(int a, int b);
+
+    }
+}
+
+-----------------------------------------------------------------------
+file_name: CalcService(add item class)
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SampleCalcSvc
+{
+    internal class CalcService
+    {
+        public int GetSum(int a , int b)
+        {
+            return a + b;
+        }
+    }
+}
+
+
+
